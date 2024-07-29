@@ -1,0 +1,604 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+      <!-- Enable responsiveness on mobile devices-->
+      <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+      <title>CMU CSD PhD Blog - Towards Autoformalization of Programs</title>
+
+      
+        <link rel="alternate" type="application/atom+xml" title="RSS" href="https://www.cs.cmu.edu/~csd-phd-blog/atom.xml">
+      
+
+      
+          <script src="https://cdnjs.cloudflare.com/ajax/libs/slideout/1.0.1/slideout.min.js"></script>
+
+          <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.10/dist/katex.min.css" integrity="sha384-wcIxkf4k558AjM3Yz3BBFQUbk/zgIYC2R0QpeeYb+TwlBVMrlgLqwRjRtGZiK7ww" crossorigin="anonymous">
+
+          <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.10/dist/katex.min.js" integrity="sha384-hIoBPJpTUs74ddyc4bFZSM1TVlQDA60VBbJS0oA934VSz82sBx1X7kSx2ATBDIyd" crossorigin="anonymous"></script>
+      
+          <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.10/dist/contrib/auto-render.min.js" integrity="sha384-43gviWU0YVjaDtb/GhzOouOXtZMP/7XUzwPTstBeZFe/+rCMvRwr4yROQP43s0Xk" crossorigin="anonymous"
+              onload="renderMathInElement(document.body);"></script>
+
+
+          
+          <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.10/dist/katex.min.css" integrity="sha384-wcIxkf4k558AjM3Yz3BBFQUbk/zgIYC2R0QpeeYb+TwlBVMrlgLqwRjRtGZiK7ww" crossorigin="anonymous">
+
+          <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.10/dist/katex.min.js" integrity="sha384-hIoBPJpTUs74ddyc4bFZSM1TVlQDA60VBbJS0oA934VSz82sBx1X7kSx2ATBDIyd" crossorigin="anonymous"></script>
+          <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.10/dist/contrib/mathtex-script-type.min.js" integrity="sha384-OGHJvxKrLNowXjZcg7A8ziPZctl4h7FncefPoKSuxgVXFxeM87GCKFJvOaTeBB9q" crossorigin="anonymous"></script>
+          
+              <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.10/dist/contrib/auto-render.min.js" integrity="sha384-43gviWU0YVjaDtb/GhzOouOXtZMP/7XUzwPTstBeZFe/+rCMvRwr4yROQP43s0Xk" crossorigin="anonymous"
+              onload="renderMathInElement(document.body);"></script>
+              
+          
+      
+
+      
+          <link rel="stylesheet" href="https://www.cs.cmu.edu/~csd-phd-blog/site.css">
+          
+          <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.10/dist/katex.min.css" integrity="sha384-wcIxkf4k558AjM3Yz3BBFQUbk/zgIYC2R0QpeeYb+TwlBVMrlgLqwRjRtGZiK7ww" crossorigin="anonymous">
+          
+      
+
+      
+      
+    </head>
+
+    <body>
+        <div class="container">
+
+            <div id="mobile-navbar" class="mobile-navbar">
+              <div class="mobile-header-logo">
+                <a href="/" class="logo">CMU CSD PhD Blog</a>
+              </div>
+              <div class="mobile-navbar-icon icon-out">
+                <span></span>
+                <span></span>
+                <span></span>
+              </div>
+            </div>
+
+            <nav id="mobile-menu" class="mobile-menu slideout-menu slideout-menu-left">
+              <ul class="mobile-menu-list">
+                
+                    <li class="mobile-menu-item">
+                        <a href="https:&#x2F;&#x2F;www.cs.cmu.edu&#x2F;~csd-phd-blog&#x2F;">
+                            Home
+                        </a>
+                    </li>
+                
+                    <li class="mobile-menu-item">
+                        <a href="https:&#x2F;&#x2F;www.cs.cmu.edu&#x2F;~csd-phd-blog&#x2F;areas">
+                            Areas
+                        </a>
+                    </li>
+                
+                    <li class="mobile-menu-item">
+                        <a href="https:&#x2F;&#x2F;www.cs.cmu.edu&#x2F;~csd-phd-blog&#x2F;tags">
+                            Tags
+                        </a>
+                    </li>
+                
+                    <li class="mobile-menu-item">
+                        <a href="https:&#x2F;&#x2F;www.cs.cmu.edu&#x2F;~csd-phd-blog&#x2F;atom.xml">
+                            RSS Feed
+                        </a>
+                    </li>
+                
+              </ul>
+            </nav>
+
+            <header id="header">
+                <div class="logo"><a href="https:&#x2F;&#x2F;www.cs.cmu.edu&#x2F;~csd-phd-blog&#x2F;">CMU CSD PhD Blog</a></div>
+                <nav class="menu">
+                    <ul>
+                        
+                            <li>
+                                <a href="https:&#x2F;&#x2F;www.cs.cmu.edu&#x2F;~csd-phd-blog&#x2F;">
+                                    Home
+                                </a>
+                            </li>
+                        
+                            <li>
+                                <a href="https:&#x2F;&#x2F;www.cs.cmu.edu&#x2F;~csd-phd-blog&#x2F;areas">
+                                    Areas
+                                </a>
+                            </li>
+                        
+                            <li>
+                                <a href="https:&#x2F;&#x2F;www.cs.cmu.edu&#x2F;~csd-phd-blog&#x2F;tags">
+                                    Tags
+                                </a>
+                            </li>
+                        
+                            <li>
+                                <a href="https:&#x2F;&#x2F;www.cs.cmu.edu&#x2F;~csd-phd-blog&#x2F;atom.xml">
+                                    RSS Feed
+                                </a>
+                            </li>
+                        
+                    </ul>
+                </nav>
+            </header>
+
+            <main>
+                <div class="content" id="mobile-panel">
+                    
+
+
+<div class="post-toc" id="post-toc">
+    <h2 class="post-toc-title">Contents</h2>
+    <div class="post-toc-content always-active">
+        <nav id="TableOfContents">
+            <ul>
+                
+                <li>
+                    <a href="https://www.cs.cmu.edu/~csd-phd-blog/2024/mini-code-props/#verification-with-automated-reasoning" class="toc-link">Verification with Automated Reasoning</a>
+                    
+                </li>
+                
+                <li>
+                    <a href="https://www.cs.cmu.edu/~csd-phd-blog/2024/mini-code-props/#verification-with-interactive-theorem-proving" class="toc-link">Verification with Interactive Theorem Proving</a>
+                    
+                </li>
+                
+                <li>
+                    <a href="https://www.cs.cmu.edu/~csd-phd-blog/2024/mini-code-props/#new-applications-of-llms" class="toc-link">New Applications of LLMs</a>
+                    
+                    <ul>
+                        
+                        <li>
+                            <a href="https://www.cs.cmu.edu/~csd-phd-blog/2024/mini-code-props/#mathematical-theorem-proving" class="toc-link">Mathematical theorem proving</a>
+                        </li>
+                        
+                        <li>
+                            <a href="https://www.cs.cmu.edu/~csd-phd-blog/2024/mini-code-props/#code-generation" class="toc-link">Code Generation</a>
+                        </li>
+                        
+                    </ul>
+                    
+                </li>
+                
+                <li>
+                    <a href="https://www.cs.cmu.edu/~csd-phd-blog/2024/mini-code-props/#challenges-and-mitigations" class="toc-link">Challenges and Mitigations</a>
+                    
+                    <ul>
+                        
+                        <li>
+                            <a href="https://www.cs.cmu.edu/~csd-phd-blog/2024/mini-code-props/#incorporating-context" class="toc-link">Incorporating Context</a>
+                        </li>
+                        
+                        <li>
+                            <a href="https://www.cs.cmu.edu/~csd-phd-blog/2024/mini-code-props/#hallucinations" class="toc-link">Hallucinations</a>
+                        </li>
+                        
+                        <li>
+                            <a href="https://www.cs.cmu.edu/~csd-phd-blog/2024/mini-code-props/#benchmark-availability" class="toc-link">Benchmark Availability</a>
+                        </li>
+                        
+                    </ul>
+                    
+                </li>
+                
+                <li>
+                    <a href="https://www.cs.cmu.edu/~csd-phd-blog/2024/mini-code-props/#benchmark-minicodeprops" class="toc-link">Benchmark: miniCodeProps</a>
+                    
+                    <ul>
+                        
+                        <li>
+                            <a href="https://www.cs.cmu.edu/~csd-phd-blog/2024/mini-code-props/#benchmark-collection" class="toc-link">Benchmark Collection</a>
+                        </li>
+                        
+                        <li>
+                            <a href="https://www.cs.cmu.edu/~csd-phd-blog/2024/mini-code-props/#examples" class="toc-link">Examples</a>
+                        </li>
+                        
+                    </ul>
+                    
+                </li>
+                
+                <li>
+                    <a href="https://www.cs.cmu.edu/~csd-phd-blog/2024/mini-code-props/#methods" class="toc-link">Methods</a>
+                    
+                    <ul>
+                        
+                        <li>
+                            <a href="https://www.cs.cmu.edu/~csd-phd-blog/2024/mini-code-props/#next-step-tactic-generation" class="toc-link">Next-Step Tactic Generation</a>
+                        </li>
+                        
+                        <li>
+                            <a href="https://www.cs.cmu.edu/~csd-phd-blog/2024/mini-code-props/#full-proof-generation" class="toc-link">Full-Proof Generation</a>
+                        </li>
+                        
+                        <li>
+                            <a href="https://www.cs.cmu.edu/~csd-phd-blog/2024/mini-code-props/#interaction-with-lean" class="toc-link">Interaction with Lean</a>
+                        </li>
+                        
+                    </ul>
+                    
+                </li>
+                
+                <li>
+                    <a href="https://www.cs.cmu.edu/~csd-phd-blog/2024/mini-code-props/#baselines" class="toc-link">Baselines</a>
+                    
+                </li>
+                
+            </ul>
+        </nav>
+    </div>
+</div>
+
+
+<article class="post">
+    
+    <header class="post__header">
+        <h1 class="post__title">
+            <a href="https:&#x2F;&#x2F;www.cs.cmu.edu&#x2F;~csd-phd-blog&#x2F;2024&#x2F;mini-code-props&#x2F;">Towards Autoformalization of Programs</a>
+        </h1>
+        <div class="post__meta">
+            <span class="post__time">2024-05-20</span> |
+            <span class="post__author">
+              
+
+
+
+  
+  
+
+
+<a href="www.evanlohn.com" target=_blank>
+  Evan Lohn
+</a>
+
+            </span>
+            
+        </div>
+    </header>
+    
+      
+    
+      
+    
+      
+    
+    
+
+    <div class="post-content">
+      <p>It is nearly inevitable that bugs will appear in a codebase during software development. To catch these bugs before they lead to real-world consequences,
+the formal verification community has developed a wide variety of tools for ensuring code correctness. These tools fall 
+into two main classes: Automated Reasoning and Interactive Theorem Proving. Unfortunately, proving code properties with either of these approaches tends
+to require significant effort from human experts. In this blog post, we describe early steps towards using the emerging capabilities of Large language Models (LLMs)
+to automate the labor intensive portions of the Interactive Theorem Proving paradigm.</p>
+<h1 id="verification-with-automated-reasoning">Verification with Automated Reasoning</h1>
+<p>Automated Reasoning tools such as SAT solvers take <a rel="noopener" target="_blank" href="https://en.wikipedia.org/wiki/Conjunctive_normal_form">CNF formulas</a> as input and use brute force with tuned heuristics to search for
+a variable assignment such that the input formula evaluates to True. If no such assignment exists, a <a rel="noopener" target="_blank" href="https://www.cs.cmu.edu/%7Emheule/publications/p01c15-prf.pdf">proof</a> of this
+fact is returned. If we want to verify that the outputs of a function \(f(x)\) satisfy property \(p(y)\), we can encode \(\exists x, \lnot p(f(x)) \) into CNF and run a SAT solver. 
+If \(f\) fails to satisfy \(p\) on any input(s), the solver will return one such input as a satisfying assignment to the formula. Otherwise, the returned proof that the formula 
+is unsatisfiable is equivalent to a proof that \(\forall x, p(f(x))\), i.e. \(f\) satisfies \(p\) on all possible inputs.</p>
+<p>SMT solvers allow more complicated variable types such as integers and arrays, as well as clauses that use for-all quantifiers. These extensions make encoding correctness properties
+simpler, but make <a rel="noopener" target="_blank" href="https://leodemoura.github.io/files/SMTProofs.pdf">producing proofs of unsatisfiability much more difficult</a>.
+While this formulation succeeds in many practical settings, solving SAT and SMT formulas
+is an NP-hard problem. In practice, when an input formula takes prohibitively long to solve, a human expert must modify the problem encoding by adding extra information such as 
+an inductive invariant hint to make the solver more efficient.</p>
+<h1 id="verification-with-interactive-theorem-proving">Verification with Interactive Theorem Proving</h1>
+<p>In contrast to the Automated Reasoning approach, Interactive Theorem Provers (ITPs) were explicitly designed to include a human expert in the proving process. Well known ITP 
+environments such as <a rel="noopener" target="_blank" href="https://isabelle.in.tum.de/overview.html">Isabelle</a>, <a rel="noopener" target="_blank" href="https://coq.inria.fr/">Coq</a>, and <a rel="noopener" target="_blank" href="https://lean-lang.org/">Lean</a> require that the user specify the
+program and the property to be proved in their own languages, which are about as expressive
+as the SMT language while maintaining more human readability. The user is then presented with the current state of the proof, containing the goal(s) and other relevant information.
+The user then adds lines to a growing proof of the property in which each line modifies the goal(s) in a mathematically valid way that is verified by the ITP until
+all goals are proven. At first glance, this paradigm seems far inferior to Automated Reasoning in terms of scaling potential because a human expert is an integral part of the
+proving process. However, recent advances in LLM capabilities provide hope that Artificial Intelligence (AI) will soon be able to produce proofs of program properties in ITP
+environments.</p>
+<h1 id="new-applications-of-llms">New Applications of LLMs</h1>
+<h2 id="mathematical-theorem-proving">Mathematical theorem proving</h2>
+<p>Mathematics research currently relies on extensive peer review to spot errors in new publications. This process can be difficult and time consuming, without any guarantees
+on review quality. To address this problem, several well-known mathematicians have begun to 
+<a rel="noopener" target="_blank" href="https://terrytao.wordpress.com/2023/12/05/a-slightly-longer-lean-4-proof-tour/">formalize parts of their work in Lean</a>. From a computer scientist’s point of view, this context provides 
+several possible avenues of research, such as generating new formal and informal proofs and translating between the two types. In this post, we focus on formal proof generation. 
+Recently, agents based on LLMs fine-tuned on medium size formal math datasets such as Lean Mathlib have shown state of the art performance on the formal mathematical proof 
+benchmark MiniF2F (see <a rel="noopener" target="_blank" href="https://arxiv.org/abs/2310.00656">lego-prover</a>, <a rel="noopener" target="_blank" href="https://arxiv.org/abs/2310.10631">llemma</a>, <a rel="noopener" target="_blank" href="https://arxiv.org/abs/2210.12283">Draft-Sketch-Prove</a>, <a rel="noopener" target="_blank" href="https://arxiv.org/abs/2205.11491">HTPS</a>, <a rel="noopener" target="_blank" href="https://arxiv.org/pdf/2405.14333">DeepSeek-Prover</a>, and this <a rel="noopener" target="_blank" href="https://arxiv.org/pdf/2312.14188">improved data sampling method</a>).</p>
+<h2 id="code-generation">Code Generation</h2>
+<p>Code generation, modification, and repair have been active areas of research for decades. Recent work has shown significant progress on benchmarks such as HumanEval and MBPP 
+using code-generating LLMs under a variety of inputs (e.g. natural language description, test cases) and prompting strategies (e.g. chain of thought, self-refinement).
+In principle, the advances in this area are directly applicable to formal theorem proving, as the text being generated is also code (Lean 4 is both a programming language and an ITP).
+Additionally, several code generation models can generate accompanying natural language explanations of generated code. For this reason, it is not unreasonable to expect similar 
+models to instead generate proofs of the given properties of said code.</p>
+<h1 id="challenges-and-mitigations">Challenges and Mitigations</h1>
+<p>Although LLMs can prove formal mathematical theorems and explain generated code, the niche of proving program properties with LLMs is underexplored due to several technical challenges.</p>
+<h2 id="incorporating-context">Incorporating Context</h2>
+<p>Until recently, input size constraints have been a well-known problem for LLMs. In particular, early LLMs could only process between hundreds and thousands of words at a time 
+due to various architecture choices and constraints. Recent advances have significantly increased the effective allowed input size: see <a rel="noopener" target="_blank" href="https://agi-sphere.com/context-length/">this post</a> for an introduction to the topic. This advance is particularly useful
+for allowing an LLM proving a program property to view the program and all its dependencies in the input.</p>
+<h2 id="hallucinations">Hallucinations</h2>
+<p>As people use Large Language Models (LLMs) such as ChatGPT more often and for an increasing variety of tasks,
+stories about ‘hallucinations’ have garnered significant attention. Essentially, LLMs sometimes fabricate 
+information that appears plausibly factual but does not hold up under scrutiny. Common hallucinations include 
+citations of nonexistent papers and close but incorrect evaluations of arithmetic expressions. Many partial solutions 
+exist for handling hallucinations; some examples include strategic prompting, fine-tuning, and Retrieval Augmented Generation (RAG).</p>
+<p>ITPs provide a somewhat unique context where hallucinations are caught immediately by the ITP’s internal verifier. When
+an LLM produces an invalid proof step, the error message produced by the ITP can also be used to prompt the LLM for an alternate proof step, 
+similarly to how humans interact with an ITP.</p>
+<h2 id="benchmark-availability">Benchmark Availability</h2>
+<p>In large part, progress on tasks such as code generation and (in)formal math proofs is driven by reporting progress on widely accepted benchmarks such as <a rel="noopener" target="_blank" href="https://paperswithcode.com/sota/code-generation-on-humaneval">HumanEval</a>, <a rel="noopener" target="_blank" href="https://paperswithcode.com/sota/math-word-problem-solving-on-math">MATH</a>, and <a rel="noopener" target="_blank" href="https://paperswithcode.com/dataset/minif2f">MiniF2f</a>.
+At the time of writing, no such benchmark exists for proofs of code properties. The main contribution of our work in this field is the creation of miniCodeProps, a new benchmark containing
+a variety of programs and corresponding properties to be proven in Lean 4.</p>
+<h1 id="benchmark-minicodeprops">Benchmark: miniCodeProps</h1>
+<p>miniCodeProps is intended to mirror the utility of miniF2F (a formal mathematical theorem proving benchmark) in the space of proving properties of code.
+We describe the way the benchmark was created and our baseline experiments with several techniques from code generation and theorem proving literature.</p>
+<h2 id="benchmark-collection">Benchmark Collection</h2>
+<p>The programs and associated properties in miniCodeProps were all sourced from the Tons of Inductive Problems (TIP) dataset. We selected files from TIP with properties
+describing functions defined in TIP, then translated those properties and functions from Haskell to Lean 4. During the translation process, we were required to prove several
+lemmas in Lean regarding the termination of the recursive functions being defined. These lemmas are also properties of the functions translated from TIP, and are also included
+in the benchmark.</p>
+<h2 id="examples">Examples</h2>
+<p>The property in the example below (<code>prop_60</code>) involves two functions: <code>last</code>, which returns the last number in a linked list or 0 if the list is empty, and <code>null</code>, 
+which returns true if the given list is empty and false otherwise. <code>prop_60</code> describes the intuitively correct property that taking the last element of concatenated 
+lists <code>xs</code> and <code>ys</code> is the same as taking the last element of <code>ys</code> if <code>ys</code> is not empty. However, it requires the prover to reason about how the newly defined <code>last</code>
+function operates on a concatenation of lists. In particular, it is not immediately obvious what object to induct on in order to prove the property.</p>
+<pre data-lang="Lean" style="background-color:#393939;color:#dedede;" class="language-Lean "><code class="language-Lean" data-lang="Lean"><span style="color:#fed6af;">import</span><span> Mathlib
+</span><span>
+</span><span style="color:#fed6af;">def </span><span style="color:#fffd87;">last</span><span>: List Nat → Nat
+</span><span>  | [] =&gt; </span><span style="font-weight:bold;color:#87d6d5;">0
+</span><span>  | [x] =&gt; x
+</span><span>  | _x::xs =&gt; (last xs)
+</span><span>
+</span><span style="color:#fed6af;">def </span><span style="color:#fffd87;">null </span><span>: List α → Bool
+</span><span>  | [] =&gt; True
+</span><span>  | _ =&gt; False
+</span><span>
+</span><span style="color:#fed6af;">lemma </span><span style="color:#fffd87;">prop_60 </span><span>(xs: List Nat) (ys: List Nat) :
+</span><span>  not (null ys) → last (xs ++ ys) = last ys:= </span><span style="color:#fed6af;">by </span><span style="text-decoration:underline;font-weight:bold;font-style:italic;color:#ffccee;">sorry
+</span></code></pre>
+<p>In addition to properties of simple programs, TIP also contains a variety of sorting algorithms with associated properties. In particular, after defining 11 sorting algorithms on 
+lists of natural numbers, TIP defines the following properties for each algorithm:</p>
+<ul>
+<li>the algorithm returns an ordered list</li>
+<li>the list returned by the algorithm has the same number of elements as the input list</li>
+<li>the list returned by the algorithm is a permutation of the original list</li>
+<li>the algorithm is equivalent to another sorting algorithm (insertion sort)</li>
+</ul>
+<p>The first and fourth properties are deeply connected; there is a unique way to order a list of natural numbers. However, this fact itself is a property of the <code>ordered</code> function used!
+The best way to prove the fourth property for most algorithms may very well be proving the first property and that single fact about lists of natural numbers, but I argue that any 
+theorem proving agent that does so has demonstrated a valuable skill. The second property is also strictly easier than the third. This allows for interesting analysis of future 
+theorem proving agents: will they succeed on proving property 2 but struggle on property 3? Or, will they prove lemma three directly and use its corollary to immediately prove lemma 3?</p>
+<p>Unfortunately, the approaches we have tested so far have not succeeded at proving any properties of sorting algorithms. However, the ways in which they fail are informative. Below we
+have a sample output of GPT-4 attempting to prove that heapsort (<code>hsort</code> below) returns an ordered list. The proof <em>looks</em> mostly reasonable to a Lean user, a common characteristic
+of LLM-produced output. Notable problems occur on lines 25, 31, and 40. </p>
+<p>On line 25, GPT-4 attempts to generalize <code>MyHeap</code>, a type of object defined earlier. Induction with generalization
+is a common idea in many proofs of recursive programs, but the object generalized is always some object in the proof context, not a type. Generalizing a type of object is semantically
+meaningless, and indeed the lean kernel throws its first error on this line.</p>
+<p>On line 31, GPT-4 again demonstrates interesting but incorrect behavior. <code>numElem_merge_branches_lt</code> is a lemma stating that merging two heaps results in a heap with fewer elements
+than a heap with a new value at the root and the two original heaps as children. GPT-4 invokes this lemma, but does not provide any arguments instead using <code>...</code> (not valid Lean syntax),
+seemingly trying to tell the user “I don’t know what should go here, so you fill it in.” However, the <code>h</code> that GPT-4 names this invocation is not used in the proof. I interpret this as follows: GPT-4’s model of correct Lean proofs includes invoking lemmas defined in the context, but does not include the logic necessary to effectively use such lemmas.</p>
+<pre data-linenos data-lang="lean" style="background-color:#393939;color:#dedede;" class="language-lean "><code class="language-lean" data-lang="lean"><table><tbody><tr><td>1</td><td><span style="color:#fed6af;">inductive </span><span style="color:#fffd87;">MyHeap </span><span style="color:#fed6af;">where
+</span><tr><td>2</td><td><span>| nil : MyHeap
+</span><tr><td>3</td><td><span>| node : MyHeap → Nat → MyHeap  →  MyHeap
+</span><tr><td>4</td><td><span>
+</span><tr><td>5</td><td><span style="color:#fed6af;">def </span><span style="color:#fffd87;">numElem </span><span>: MyHeap → Nat
+</span><tr><td>6</td><td><span>| MyHeap.nil =&gt; </span><span style="font-weight:bold;color:#87d6d5;">0
+</span><tr><td>7</td><td><span>| MyHeap.node p _x q =&gt; </span><span style="font-weight:bold;color:#87d6d5;">1</span><span> + numElem p + numElem q
+</span><tr><td>8</td><td><span>
+</span><tr><td>9</td><td><span style="color:#fed6af;">lemma </span><span style="color:#fffd87;">numElem_merge_branches_lt </span><span>(p q: MyHeap) (x: Nat): numElem (hmerge p q) &lt; numElem (MyHeap.node p x q) := </span><span style="color:#fed6af;">by
+</span><tr><td>10</td><td><span>  rw [←merge_elems _ _];
+</span><tr><td>11</td><td><span>  </span><span style="color:#fed6af;">have</span><span> h&#39;: numElem (MyHeap.node p x q) = </span><span style="font-weight:bold;color:#87d6d5;">1</span><span> + numElem p + numElem q; rfl
+</span><tr><td>12</td><td><span>  rw [h&#39;]
+</span><tr><td>13</td><td><span>  linarith;
+</span><tr><td>14</td><td><span>
+</span><tr><td>15</td><td><span style="color:#fed6af;">def </span><span style="color:#fffd87;">ordered </span><span>: List Nat -&gt; Bool
+</span><tr><td>16</td><td><span>| []       =&gt; True
+</span><tr><td>17</td><td><span>| [_x]     =&gt; True
+</span><tr><td>18</td><td><span>| x::y::xs =&gt; x &lt;= y &amp;&amp; ordered (y::xs)
+</span><tr><td>19</td><td><span>
+</span><tr><td>20</td><td><span style="color:#a0cfa1;">--</span><span style="color:#87ae86;"> hsort (heapsort) omitted for brevity
+</span><tr><td>21</td><td><span>
+</span><tr><td>22</td><td><span style="color:#fed6af;">theorem </span><span style="color:#fffd87;">prop_HSortSorts&#39; </span><span>(xs: List Nat) : ordered (hsort xs) == True := </span><span style="color:#fed6af;">by
+</span><tr><td>23</td><td><span>unfold hsort
+</span><tr><td>24</td><td><span>unfold ordered
+</span><tr><td>25</td><td><span>induction xs generalizing MyHeap </span><span style="color:#fed6af;">with
+</span><tr><td>26</td><td><span>| nil =&gt; unfold toHeap; unfold toList; simp
+</span><tr><td>27</td><td><span>| cons x xs&#39; ih =&gt;
+</span><tr><td>28</td><td><span>  unfold toHeap
+</span><tr><td>29</td><td><span>  unfold toList
+</span><tr><td>30</td><td><span>  unfold hmerge
+</span><tr><td>31</td><td><span>  </span><span style="color:#fed6af;">have</span><span> h := numElem_merge_branches_lt ... </span><span style="color:#a0cfa1;">--</span><span style="color:#87ae86;"> Placeholder for specific heaps if needed
+</span><tr><td>32</td><td><span>  </span><span style="color:#fed6af;">have</span><span> m := merge_elems ... </span><span style="color:#a0cfa1;">--</span><span style="color:#87ae86;"> Placeholder for specific heaps if needed
+</span><tr><td>33</td><td><span>  specialize ih (xs&#39;.map (</span><span style="color:#fed6af;">fun</span><span> x =&gt; MyHeap.node MyHeap.nil x MyHeap.nil))
+</span><tr><td>34</td><td><span>  induction (toList (toHeap xs&#39;)) generalizing (toList (toHeap (x :: xs&#39;)))
+</span><tr><td>35</td><td><span>  | nil =&gt;
+</span><tr><td>36</td><td><span>    apply ih
+</span><tr><td>37</td><td><span>  | cons y ys&#39; ysih =&gt;
+</span><tr><td>38</td><td><span>    unfold toList at ih
+</span><tr><td>39</td><td><span>    unfold toHeap at ih
+</span><tr><td>40</td><td><span>    unfold ordered at ih ⊢
+</span><tr><td>41</td><td><span>    unfold hsort at ih
+</span><tr><td>42</td><td><span>    </span><span style="color:#fed6af;">have</span><span> h := numElem_merge_branches_lt ... </span><span style="color:#a0cfa1;">--</span><span style="color:#87ae86;"> Placeholder for specific values if needed
+</span><tr><td>43</td><td><span>    </span><span style="color:#fed6af;">have</span><span> m := merge_elems ... </span><span style="color:#a0cfa1;">--</span><span style="color:#87ae86;"> Placeholder for specific values if needed
+</span><tr><td>44</td><td><span>    case h_1 =&gt;
+</span><tr><td>45</td><td><span>      unfold ordered
+</span><tr><td>46</td><td><span>      simp [List.map]
+</span><tr><td>47</td><td><span>      simp [toList]
+</span><tr><td>48</td><td><span>    case h_2 =&gt;
+</span><tr><td>49</td><td><span>      unfold toHeap
+</span><tr><td>50</td><td><span>      unfold ordered
+</span><tr><td>51</td><td><span>      simp [toList]
+</span><tr><td>52</td><td><span>      rfl
+</span></tr></tbody></table></code></pre>
+<h1 id="methods">Methods</h1>
+<p>In this section we will address the following questions: </p>
+<ul>
+<li>What are current and potential future techniques used to generate proofs using LLMs? </li>
+<li>How do you programmatically check generated proofs?</li>
+</ul>
+<p>There are two main classes of proof generation technique in current automated ITP literature: Next-step tactic prediction and full proof generation.</p>
+<h2 id="next-step-tactic-generation">Next-Step Tactic Generation</h2>
+<p>At the beginning of a proof and after each valid line, the Lean kernel generates a proof state, i.e. a collection of the variables and hypotheses defined in the current context. 
+As Lean is also a programming language, the proof state can also be thought of as a debug trace of the current context (theorems are effectively functions that produce certificates that a property holds! See <a rel="noopener" target="_blank" href="https://en.wikipedia.org/wiki/Curry%E2%80%93Howard_correspondence">Curry-Howard</a>). Tactics are functions that modify the proof state. Common examples include <code>simp</code>, a 
+broadly useful simplification tactic that attempts a wide array of other common tactics, and <code>rw</code>, which attempts to use specific lemmas provided by the user to modify the goal.</p>
+<p>The most basic variant of a Next-step tactic generation agent is a function from proof state to a set of possible next tactics. There are many ways to extend this idea. For example,
+expanding the input to include other relevant Lean code and lemmas or expanding output to give each possible next tactic a “confidence” score describing the likelihood that the proof
+can be completed using the generation as the next tactic.</p>
+<h2 id="full-proof-generation">Full-Proof Generation</h2>
+<p>Researchers have discovered that LLMs in some cases exhibit In-Context Learning: the ability to generalize patterns from a small number of examples provided in the prompt. Additionally, 
+the data that massive LLMs such as GPT-4 are trained on contains examples of proofs in Lean 3, as well as in other proof assistants such as Isabelle and Coq. 
+Therefore, it is reasonable to expect that LLMs could generate full proofs of a given theorem statement given example pairs of theorem statement and proof. </p>
+<p>The nascent field of Prompt Engineering provides a variety of approaches to constructing high-performing prompts for language models. One such technique is to tell the language model it 
+is an expert, i,e, begin with “You are an expert in producing Lean 4 proofs tasked with…”. A second common approach is “few-shot prompting,” the approach of providing several examples
+of input and desired output in the prompt. Another common approach is self-refinement, i.e. using any available output describing the results of the previous LLM output to modify the 
+next prompt. </p>
+<h2 id="interaction-with-lean">Interaction with Lean</h2>
+<p>Interaction with the Lean 4 kernel is necessary for most Next-Step tactic generation and self-refinement Full-Proof generation methods. Our work uses the Lean REPL, a tool that 
+facilitates backtracking and continuing from specific steps in the proof. Each time Lean code is generated, Lean REPL checks the validity of the line in the context of the definitions
+and earlier proof lines. The REPL returns error messages if any invalid steps were taken, or the list of remaining goals (statements to prove) otherwise. When the list of goals is empty,
+the original theorem has been proven correct.</p>
+<h1 id="baselines">Baselines</h1>
+<p>We tested several models using next-step tactic generation, and GPT-4 for full-proof generation. Results can be found in the table below. 
+<a rel="noopener" target="_blank" href="https://github.com/wellecks/llmstep">LLMStep</a> is a framework for getting next-step proof suggestions from arbitrary LLMs in VScode. We modified it to communicate with Lean REPL
+directly and output confidence scores for each generated next step. We applied the following proof search approach:</p>
+<ul>
+<li>Given proof state, generate 10 (next tactic, confidence score) pairs</li>
+<li>deduplicate and pick the 5 highest confidence tactics</li>
+<li>Send each tactic to Lean REPL using the current state. For each valid proof state returned:
+<ul>
+<li>If the proof state is invalid (i.e. the tactic caused Lean REPL to error), ignore it.</li>
+<li>If there are no goals remaining, return the list of steps taken.</li>
+<li>If the max proof search depth has not been reached, repeat steps a) and b).
+The LLMs we used were all fine-tuned to produce Lean tactics from proof state. ntp-context-1.3b in particular was also fine-tuned to use surrounding file context. Due to computational constraints, we used a proof search depth of 3 in our experiments.</li>
+</ul>
+</li>
+</ul>
+<p>For full-proof generation approach, we constructed a base prompt containing three examples of program property proofs similar to those in miniCodeProps. For each property in miniCodeProps,
+we appended the property and accompanying context (function definitions and lemmas) to the base prompt and requested a full proof. We requested 8 responses from GPT-4 and reported success
+if any succeeded.</p>
+<table><thead><tr><th align="left"></th><th align="center">Medley (Easy)</th><th align="center">Termination (Med)</th><th align="center">Sorting (Hard)</th></tr></thead><tbody>
+<tr><td align="left">LLMStep + Pythia2.8b</td><td align="center">44/86</td><td align="center">1/28</td><td align="center">0/63</td></tr>
+<tr><td align="left">LLMStep + Llemma7b</td><td align="center">46/86</td><td align="center">2/28</td><td align="center">0/63</td></tr>
+<tr><td align="left">LLMStep + ntp-context-1.3b</td><td align="center">38/86</td><td align="center">0/28</td><td align="center">0/63</td></tr>
+<tr><td align="left">GPT-4-turbo</td><td align="center">44/86</td><td align="center">1/28</td><td align="center">0/63</td></tr>
+</tbody></table>
+<p>Our results indicate that proving properties of programs is nontrivial for simple applications of fine-tuned language models and basic few-shot prompting of GPT-4. Further analysis of 
+the failure modes of these models (see <a href="https://www.cs.cmu.edu/%7Ecsd-phd-blog/2024/mini-code-props/#examples">Examples</a>), as well as more sophisticated (and higher computational budget) approaches to proof search will likely improve these results in the near future. 
+In particular, when models are capable of automatically producing proofs in the Sorting category, theorem proving technology will have taken a large step towards the elusive goal of 
+automatic generation of provably correct code.</p>
+
+    </div>
+
+    
+    
+
+    <div class="post-footer">
+        
+            Author: 
+
+
+
+  
+  
+
+
+<a href="www.evanlohn.com" target=_blank>
+  Evan Lohn
+</a>
+
+            <br />
+            Approved by:
+            
+            
+
+
+
+  
+
+
+  
+    
+    
+  
+
+<a href="#" >
+  Committee Member 1&#x27;s Full Name,
+</a>
+
+            
+            
+
+
+
+  
+  
+
+
+<a href="http:&#x2F;&#x2F;www.evanlohn.com" target=_blank>
+  Daniel Fried,
+</a>
+
+            
+            
+
+
+
+  
+  
+
+
+<a href="http:&#x2F;&#x2F;www.evanlohn.com" target=_blank>
+  Benjamin Stoler
+</a>
+
+            <br />
+            
+                <div class="post-tags">
+                    
+                        <a href="https://www.cs.cmu.edu/~csd-phd-blog/areas/artificial-intelligence/">#Artificial Intelligence</a>
+                    
+                        <a href="https://www.cs.cmu.edu/~csd-phd-blog/areas/programming-languages/">#Programming Languages</a>
+                    
+                        <a href="https://www.cs.cmu.edu/~csd-phd-blog/areas/theory/">#Theory</a>
+                    
+                    <br />
+                    
+                        <a href="https://www.cs.cmu.edu/~csd-phd-blog/tags/theorem-proving/">#theorem-proving</a>
+                    
+                        <a href="https://www.cs.cmu.edu/~csd-phd-blog/tags/formal-methods/">#formal-methods</a>
+                    
+                        <a href="https://www.cs.cmu.edu/~csd-phd-blog/tags/lean/">#lean</a>
+                    
+                </div>
+            
+            
+                <div class="post-nav">
+                    
+                        <a class="previous" href="https:&#x2F;&#x2F;www.cs.cmu.edu&#x2F;~csd-phd-blog&#x2F;2024&#x2F;piano-private-information-retrieval&#x2F;">‹ Piano: Extremely Simple, Single-Server Private Information Retrieval</a>
+                    
+                    
+                    
+                    
+                </div>
+            
+
+        
+
+    </div>
+
+    
+    
+</article>
+
+
+                </div>
+            </main>
+
+            
+            
+        </div>
+
+      
+          <script type="text/javascript" src="https://www.cs.cmu.edu/~csd-phd-blog/even.js" ></script>
+      
+    </body>
+
+    <!-- Blog infrastructure set up by Jay Bosamiya, https://www.jaybosamiya.com/ -->
+
+</html>
