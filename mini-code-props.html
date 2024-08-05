@@ -301,35 +301,35 @@ several possible avenues of research, such as generating new formal and informal
 Recently, agents based on LLMs fine-tuned on medium size formal math datasets such as Lean Mathlib have shown state of the art performance on the formal mathematical proof 
 benchmark MiniF2F (see <a rel="noopener" target="_blank" href="https://arxiv.org/abs/2310.00656">lego-prover</a>, <a rel="noopener" target="_blank" href="https://arxiv.org/abs/2310.10631">llemma</a>, <a rel="noopener" target="_blank" href="https://arxiv.org/abs/2210.12283">Draft-Sketch-Prove</a>, <a rel="noopener" target="_blank" href="https://arxiv.org/abs/2205.11491">HTPS</a>, <a rel="noopener" target="_blank" href="https://arxiv.org/pdf/2405.14333">DeepSeek-Prover</a>, and this <a rel="noopener" target="_blank" href="https://arxiv.org/pdf/2312.14188">improved data sampling method</a>).</p>
 <h2 id="code-generation">Code Generation</h2>
-<p>Code generation, modification, and repair have been active areas of research for decades. Recent work has shown significant progress on benchmarks such as HumanEval and MBPP 
+<p>Code generation, modification, and repair have been active areas of research for decades. Recent work has shown significant progress on benchmarks such as <a rel="noopener" target="_blank" href="https://paperswithcode.com/sota/code-generation-on-humaneval">HumanEval</a> and <a rel="noopener" target="_blank" href="https://paperswithcode.com/dataset/mbpp">MBPP</a> 
 using code-generating LLMs under a variety of inputs (e.g. natural language description, test cases) and prompting strategies (e.g. chain of thought, self-refinement).
-In principle, the advances in this area are directly applicable to formal theorem proving, as the text being generated is also code (Lean 4 is both a programming language and an ITP).
-Additionally, several code generation models can generate accompanying natural language explanations of generated code. For this reason, it is not unreasonable to expect similar 
-models to instead generate proofs of the given properties of said code.</p>
+In principle, the advances in this area are directly applicable to formal theorem proving. Lean 4 is both a programming language and an ITP, so generating Lean proofs can also be viewed as generating code in the Lean programming language.
+Additionally, <a rel="noopener" target="_blank" href="https://arxiv.org/abs/2307.02503">several code generation models</a> can generate accompanying natural language explanations of generated code. If a language model can explain 
+how code works, it may also be able to generate proofs of properties of said code.</p>
 <h1 id="challenges-and-mitigations">Challenges and Mitigations</h1>
 <p>Although LLMs can prove formal mathematical theorems and explain generated code, the niche of proving program properties with LLMs is underexplored due to several technical challenges.</p>
 <h2 id="incorporating-context">Incorporating Context</h2>
 <p>Until recently, input size constraints have been a well-known problem for LLMs. In particular, early LLMs could only process between hundreds and thousands of words at a time 
-due to various architecture choices and constraints. Recent advances have significantly increased the effective allowed input size: see <a rel="noopener" target="_blank" href="https://agi-sphere.com/context-length/">this post</a> for an introduction to the topic. This advance is particularly useful
-for allowing an LLM proving a program property to view the program and all its dependencies in the input.</p>
+due to various architecture choices and constraints. Recent advances have significantly increased the effective allowed input size: see <a rel="noopener" target="_blank" href="https://agi-sphere.com/context-length/">this post</a> for an introduction to the topic. 
+Increases in context length have allowed prompts about code to also include code dependencies and relevant file context. </p>
 <h2 id="hallucinations">Hallucinations</h2>
 <p>As people use Large Language Models (LLMs) such as ChatGPT more often and for an increasing variety of tasks,
 stories about ‘hallucinations’ have garnered significant attention. Essentially, LLMs sometimes fabricate 
 information that appears plausibly factual but does not hold up under scrutiny. Common hallucinations include 
 citations of nonexistent papers and close but incorrect evaluations of arithmetic expressions. Many partial solutions 
-exist for handling hallucinations; some examples include strategic prompting, fine-tuning, and Retrieval Augmented Generation (RAG).</p>
+exist for handling hallucinations; some examples include <a rel="noopener" target="_blank" href="https://arxiv.org/abs/2303.08896">self-consistency</a> and <a rel="noopener" target="_blank" href="https://arxiv.org/abs/2005.11401">Retrieval Augmented Generation (RAG)</a>.</p>
 <p>ITPs provide a somewhat unique context where hallucinations are caught immediately by the ITP’s internal verifier. When
 an LLM produces an invalid proof step, the error message produced by the ITP can also be used to prompt the LLM for an alternate proof step, 
 similarly to how humans interact with an ITP.</p>
 <h2 id="benchmark-availability">Benchmark Availability</h2>
-<p>In large part, progress on tasks such as code generation and (in)formal math proofs is driven by reporting progress on widely accepted benchmarks such as <a rel="noopener" target="_blank" href="https://paperswithcode.com/sota/code-generation-on-humaneval">HumanEval</a>, <a rel="noopener" target="_blank" href="https://paperswithcode.com/sota/math-word-problem-solving-on-math">MATH</a>, and <a rel="noopener" target="_blank" href="https://paperswithcode.com/dataset/minif2f">MiniF2f</a>.
-At the time of writing, no such benchmark exists for proofs of code properties. The main contribution of our work in this field is the creation of miniCodeProps, a new benchmark containing
+<p>In large part, progress on tasks such as code generation and (in)formal math proofs is driven by reporting progress on widely accepted benchmarks such as <a rel="noopener" target="_blank" href="https://paperswithcode.com/sota/code-generation-on-humaneval">HumanEval</a>, <a rel="noopener" target="_blank" href="https://paperswithcode.com/sota/math-word-problem-solving-on-math">MATH</a>, and <a rel="noopener" target="_blank" href="https://paperswithcode.com/dataset/minif2f">miniF2F</a>.
+At the time of writing, no such benchmark exists for proofs of code properties. The main contribution of our work in this field is the creation of <a rel="noopener" target="_blank" href="https://huggingface.co/datasets/elohn/miniCodeProps">miniCodeProps</a>, a new benchmark containing
 a variety of programs and corresponding properties to be proven in Lean 4.</p>
 <h1 id="benchmark-minicodeprops">Benchmark: miniCodeProps</h1>
 <p>miniCodeProps is intended to mirror the utility of miniF2F (a formal mathematical theorem proving benchmark) in the space of proving properties of code.
 We describe the way the benchmark was created and our baseline experiments with several techniques from code generation and theorem proving literature.</p>
 <h2 id="benchmark-collection">Benchmark Collection</h2>
-<p>The programs and associated properties in miniCodeProps were all sourced from the Tons of Inductive Problems (TIP) dataset. We selected files from TIP with properties
+<p>The programs and associated properties in miniCodeProps were all sourced from the <a rel="noopener" target="_blank" href="https://tip-org.github.io/">Tons of Inductive Problems (TIP)</a> dataset. We selected files from TIP with properties
 describing functions defined in TIP, then translated those properties and functions from Haskell to Lean 4. During the translation process, we were required to prove several
 lemmas in Lean regarding the termination of the recursive functions being defined. These lemmas are also properties of the functions translated from TIP, and are also included
 in the benchmark.</p>
@@ -449,7 +449,7 @@ is an expert, i,e, begin with “You are an expert in producing Lean 4 proofs ta
 of input and desired output in the prompt. Another common approach is self-refinement, i.e. using any available output describing the results of the previous LLM output to modify the 
 next prompt. </p>
 <h2 id="interaction-with-lean">Interaction with Lean</h2>
-<p>Interaction with the Lean 4 kernel is necessary for most Next-Step tactic generation and self-refinement Full-Proof generation methods. Our work uses the Lean REPL, a tool that 
+<p>Interaction with the Lean 4 kernel is necessary for most Next-Step tactic generation and self-refinement Full-Proof generation methods. Our work uses the <a rel="noopener" target="_blank" href="https://github.com/leanprover-community/repl">Lean REPL</a>, a tool that 
 facilitates backtracking and continuing from specific steps in the proof. Each time Lean code is generated, Lean REPL checks the validity of the line in the context of the definitions
 and earlier proof lines. The REPL returns error messages if any invalid steps were taken, or the list of remaining goals (statements to prove) otherwise. When the list of goals is empty,
 the original theorem has been proven correct.</p>
