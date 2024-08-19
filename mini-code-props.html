@@ -7,7 +7,7 @@
       <!-- Enable responsiveness on mobile devices-->
       <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
 
-      <title>CMU CSD PhD Blog - Towards Autoformalization of Programs</title>
+      <title>CMU CSD PhD Blog - miniCodeProps: a Benchmark for Proving Code Properties</title>
 
       
         <link rel="alternate" type="application/atom+xml" title="RSS" href="https://www.cs.cmu.edu/~csd-phd-blog/atom.xml">
@@ -257,7 +257,7 @@
     
     <header class="post__header">
         <h1 class="post__title">
-            <a href="https:&#x2F;&#x2F;www.cs.cmu.edu&#x2F;~csd-phd-blog&#x2F;2024&#x2F;mini-code-props&#x2F;">Towards Autoformalization of Programs</a>
+            <a href="https:&#x2F;&#x2F;www.cs.cmu.edu&#x2F;~csd-phd-blog&#x2F;2024&#x2F;mini-code-props&#x2F;">miniCodeProps: a Benchmark for Proving Code Properties</a>
         </h1>
         <div class="post__meta">
             <span class="post__time">2024-05-20</span> |
@@ -296,20 +296,21 @@ to automate the labor intensive portions of the Interactive Theorem Proving para
 for automated Interactive Theorem Proving on code properties.</p>
 <h1 id="background">Background</h1>
 <h2 id="verification-with-automated-reasoning">Verification with Automated Reasoning</h2>
-<p>Automated Reasoning tools such as SAT solvers take <a rel="noopener" target="_blank" href="https://en.wikipedia.org/wiki/Conjunctive_normal_form">CNF formulas</a> as input and use brute force with tuned heuristics to search for
+<p>Automated Reasoning tools such as boolean satisfiability solvers (a.k.a. SAT solvers) take formulas in <a rel="noopener" target="_blank" href="https://en.wikipedia.org/wiki/Conjunctive_normal_form">a form of propositional logic</a>
+as input and use “<a rel="noopener" target="_blank" href="https://cacm.acm.org/research/the-science-of-brute-force/">brute reasoning</a>” to search for
 a variable assignment such that the input formula evaluates to True. If no such assignment exists, a <a rel="noopener" target="_blank" href="https://www.cs.cmu.edu/%7Emheule/publications/p01c15-prf.pdf">proof</a> of this
 fact is returned. If we want to verify that the outputs of a function \(y = f(x)\) satisfy property \(p(y)\), we can encode \(\exists x, \lnot p(f(x)) \) into CNF and run a SAT solver. 
 If \(f\) fails to satisfy \(p\) on any input(s), the solver will return one such input as a satisfying assignment to the formula. Otherwise, the returned proof that the formula 
 is unsatisfiable is equivalent to a proof that \(\forall x, p(f(x))\), i.e. \(f\) satisfies \(p\) on all possible inputs. </p>
-<p>For example, \(f\) may be a function that takes a sorted list of numbers \(x\) as input and returns \(y\), a new sorted list. If \(p(y)\) mathematically encodes the statement 
+<p>For example, \(f\) may be a function that takes an unsorted list of numbers \(x\) as input and returns \(y\), a new sorted list. If \(p(y)\) mathematically encodes the statement 
 “the list \(y\) is ordered from least to greatest”, then solving the aforementioned \(\exists x, \lnot p(f(x)) \) is effectively asking the SAT solver to search for input lists
 that cause \(f\) to not return a sorted list. In practice, verifying a sorting algorithm requires proving other properties as well. If \(f\) always sets \(y\) to an empty list,
 \(p(y)\) will always be True! We follow up with this example in a <a href="https://www.cs.cmu.edu/%7Ecsd-phd-blog/2024/mini-code-props/#sorting">later section</a>.</p>
-<p>SMT solvers allow more complicated variable types such as integers and arrays, as well as clauses that use for-all quantifiers. These extensions make encoding correctness properties
+<p>Satisfiability Modulo Theory (SMT) solvers allow more complicated variable types such as integers and arrays, as well as clauses that use for-all quantifiers. These extensions make encoding correctness properties
 simpler, but make <a rel="noopener" target="_blank" href="https://leodemoura.github.io/files/SMTProofs.pdf">producing proofs of unsatisfiability much more difficult</a>.
 While this formulation succeeds in many practical settings, solving SAT and SMT formulas
 is an NP-hard problem. In practice, when an input formula takes prohibitively long to solve, a human expert must modify the problem encoding by adding extra information such as 
-an inductive invariant hint to make the solver more efficient. Although not the focus of this post, <a rel="noopener" target="_blank" href="https://arxiv.org/abs/2310.17807">recent work</a>  has shown that
+an inductive invariant hint to reduce the search space. Although not the focus of this post, <a rel="noopener" target="_blank" href="https://arxiv.org/abs/2310.17807">recent work</a>  has shown that
 <a rel="noopener" target="_blank" href="https://arxiv.org/abs/2303.08774">OpenAI’s GPT-4 LLM</a> can be used to reliably produce SMT encodings of some problems.</p>
 <h2 id="leanExample">Verification with Interactive Theorem Proving</h2>
 <p>In contrast to the Automated Reasoning approach, Interactive Theorem Provers (ITPs) were explicitly designed to include a human expert in the proving process. Well known ITP 
@@ -381,8 +382,14 @@ systems use to produce proofs.</p>
 <li>How do you programmatically check generated proofs?</li>
 <li>What are current and potential future techniques used to generate proofs using LLMs? </li>
 </ul>
-<p>There are two main classes of proof generation techniques in current automated ITP literature: Next-Step tactic prediction and Full-Proof generation.
-We evaluate both approaches on miniCodeProps.</p>
+<p>There are two main classes of proof generation techniques in current automated ITP literature: </p>
+<ol>
+<li>Next-Step tactic prediction: one line is generated at a time until the proof is complete</li>
+<li>Full-Proof generation: entire candidate proofs are generated until a proof is found
+In practice, researchers designate a computational budget (for example, 8 attempts at Full-Proof generation) and terminate the proof search process once this budget is reached
+without a successful proof.
+We evaluate both approaches on miniCodeProps.</li>
+</ol>
 <h2 id="interaction-with-lean">Interaction with Lean</h2>
 <p>Interaction with the Lean 4 kernel is necessary for most Next-Step tactic generation and self-refinement Full-Proof generation methods. Our work uses the <a rel="noopener" target="_blank" href="https://github.com/leanprover-community/repl">Lean REPL</a>, a tool that 
 facilitates backtracking and continuing from specific steps in the proof. Each time Lean code is generated, Lean REPL checks the validity of the line in the context of the definitions
@@ -405,7 +412,7 @@ the data that massive LLMs such as GPT-4 are trained on contains examples of pro
 Therefore, it is reasonable to expect that LLMs could generate full proofs of a given theorem statement given example pairs of theorem statement and proof. 
 Concretely, the “theorem statement” used is generally sections A, B, C, and optionally E in the <a href="https://www.cs.cmu.edu/%7Ecsd-phd-blog/2024/mini-code-props/#leanExample">earlier example</a>, while the expected output is an entire valid 
 proof (section D). In our experiments we ignored initial proof state (section E) as it was mostly redundant with the theorem definition (section C) in our examples.</p>
-<p>Deciding inputs and outputs is a good first step, but It is generally suboptimal to just send the LLM a list of input-output pairs. The nascent field of Prompt Engineering provides 
+<p>Deciding inputs and outputs is a good first step, but it is generally suboptimal to just send the LLM a list of input-output pairs. The nascent field of Prompt Engineering provides 
 a variety of approaches to constructing high-performing prompts for language models. One such technique is to tell the language model it 
 is an expert, i,e, begin with “You are an expert in producing Lean 4 proofs tasked with…”. A second common approach is “few-shot prompting,” the approach of providing several examples
 of input and desired output in the prompt. Another common approach is <a rel="noopener" target="_blank" href="https://arxiv.org/abs/2303.17651">self-refinement</a>, i.e. using any available output describing the results 
@@ -414,18 +421,18 @@ of the previous LLM output as an input to the next prompt. </p>
 <p>We tested several models using Next-Step tactic generation, and GPT-4 for Full-Proof generation. Results can be found in the table below. 
 <a rel="noopener" target="_blank" href="https://github.com/wellecks/llmstep">LLMStep</a> is a framework for getting Next-Step proof suggestions from arbitrary LLMs in VScode. We modified it to communicate with Lean REPL
 directly and output confidence scores for each generated next step. We applied the following proof search approach:</p>
-<ul>
-<li>Given proof state, generate 10 (next tactic, confidence score) pairs</li>
-<li>deduplicate and pick the 5 highest confidence tactics</li>
+<ol>
+<li>Given proof state, generate 10 (next tactic, confidence score) pairs.</li>
+<li>Deduplicate and pick the 5 highest confidence tactics.</li>
 <li>Send each tactic to Lean REPL using the current state. For each valid proof state returned:
 <ul>
 <li>If the proof state is invalid (i.e. the tactic caused Lean REPL to error), ignore it.</li>
 <li>If there are no goals remaining, return the list of steps taken.</li>
-<li>If the max proof search depth has not been reached, repeat steps a) and b).
+<li>If the max proof search depth has not been reached, repeat steps 1-3 on the new proof state.
 The LLMs we used were all fine-tuned to produce Lean tactics from proof state. ntp-context-1.3b in particular was also fine-tuned to use surrounding file context. Due to computational constraints, we used a proof search depth of 3 in our experiments.</li>
 </ul>
 </li>
-</ul>
+</ol>
 <p>For our Full-Proof generation approach, we constructed a base prompt containing three examples of program property proofs similar to those in miniCodeProps. For each property in miniCodeProps,
 we appended the property and accompanying context (function definitions and lemmas) to the base prompt and requested a full proof. We requested 8 responses from GPT-4 and reported success
 if any succeeded.</p>
@@ -525,6 +532,7 @@ the elusive goal of automatic generation of provably correct code.  We hope the 
 <li><a rel="noopener" target="_blank" href="https://huggingface.co/datasets/elohn/miniCodeProps">miniCodeProps benchmark</a></li>
 <li><a rel="noopener" target="_blank" href="https://aws.amazon.com/what-is/large-language-model/">What is an LLM blog post</a></li>
 <li><a rel="noopener" target="_blank" href="https://en.wikipedia.org/wiki/Conjunctive_normal_form">CNF explanation</a></li>
+<li><a rel="noopener" target="_blank" href="https://cacm.acm.org/research/the-science-of-brute-force/">Brute Reasoning explanation</a></li>
 <li><a rel="noopener" target="_blank" href="https://www.cs.cmu.edu/%7Emheule/publications/p01c15-prf.pdf">SAT solver unsatisfiability proofs</a></li>
 <li><a rel="noopener" target="_blank" href="https://leodemoura.github.io/files/SMTProofs.pdf">SMT solver proofs</a></li>
 <li><a rel="noopener" target="_blank" href="https://arxiv.org/abs/2310.17807">Clover: Closed-Loop Verifiable Code Generation</a></li>
